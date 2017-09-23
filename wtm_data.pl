@@ -10,7 +10,6 @@ use DateTime qw();
 my $report_date = DateTime->now(time_zone => 'America/Los_Angeles');
 $report_date = $report_date->strftime('%d-%m-%Y');
 
-# my $outfile = "/home/gene/projects/perl/wtm/wtm_out.html";
 my $outfile = "/home/gene/projects/perl/wtm/wtm_data.html";
 
 # Set user agent to avoid the dreaded lack-of-Flash bullshit. 
@@ -67,7 +66,7 @@ foreach my $ts ($te->tables) {
 #    print "Net Sales: " . $ts->cell(1,1) . "\n";
 #    print "Labor    : " . $ts->cell(2,1) . "\n";
 #    print "Discounts: " . $ts->cell(3,2) . "\n";
-    print OUTFILE "S: " . $ts->cell(1,1) . "     L: " . $ts->cell(2,1) . "     D: " . $ts->cell(3,2);
+    print OUTFILE "S: " . $ts->cell(1,1) . "     L: " . $ts->cell(2,1) . "     D: " . $ts->cell(4,2) . "     O: " . $ts->cell(3,1) . "/" . $ts->cell(3,2);
 }
 
 #print OUTFILE "$output_page";

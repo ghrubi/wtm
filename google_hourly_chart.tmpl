@@ -1,0 +1,68 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+  <script type="text/javascript">
+    function init() {
+        google.load("visualization", "1.1", { packages:["corechart"], callback: 'drawCharts' });
+    }
+
+    function drawCharts() {
+        drawAccountImpressions('chart-account-impressions');
+    }
+
+    function drawAccountImpressions(containerId) {
+      var data = google.visualization.arrayToDataTable([
+        [{label: 'Time', id: 'Time', type: 'timeofday'}, {label: 'Sales', id: 'Sales', type: 'number'},{'type': 'string', 'role': 'style'}]
+
+,
+<CHART_DATA>
+      ]);
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+
+      var options = {
+        title: "Hourly Sales",
+        fontSize: 18,
+        width: 800,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: {position:'none'},
+        chartArea: {width: '80%', height: '60%'},
+        vAxis: {
+          format: 'currency',
+          titleTextStyle: {fontSize: 15}
+        },
+        hAxis: {
+          title: '<CHART_TOTAL>',
+          titleTextStyle: {fontSize: 15, bold: true},
+          textStyle: {fontSize: 16},
+          format: 'h:SSa',
+          gridlines : {count: -1}
+        },
+        annotations: {
+          textStyle: {
+          fontName: 'Times-Roman',
+          fontSize: 15
+          }
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById(containerId));
+      chart.draw(view, options);
+
+
+  }
+  </script>
+</head>
+    <body onload="init()">
+    	<div id="chart-account-impressions"></div>
+</body>
+</html>
